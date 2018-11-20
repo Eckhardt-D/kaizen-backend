@@ -1,0 +1,23 @@
+{
+  "name": "kaiserve",
+  "version": "1.0.0",
+  "description": "Webserver handling incoming messages from kaizen media",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "Eckhardt Dreyer",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "node-fetch": "^2.3.0",
+    "nodemailer": "^4.7.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.6"
+  }
+}
