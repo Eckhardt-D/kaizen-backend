@@ -10,10 +10,10 @@ const corsOptions = {
 }
 
 const app = express();
-app.use(bodyParser.json());
-app.use(morgan('combined'));
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.use(bodyParser.json());
+app.use(morgan('combined'));
 app.use(mw.checkHeaders);
 app.use(mw.checkSchema);
 
