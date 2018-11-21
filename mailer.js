@@ -2,6 +2,12 @@ const mail = require('nodemailer');
 
 function send(data, cb) {
   const message = data;
+  
+  if(message.accepted.length < 1) {
+    message.accepted = 'Not Accepted'
+  } else {
+    message.accepted = 'Accepted'
+  }
 
   let mailOpts = {
     from: `"Client 👻" <${message.email}>`, // sender address

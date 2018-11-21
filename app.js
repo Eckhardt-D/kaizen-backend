@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const morgan = require('morgan');
 const mw = require('./middleware');
 const sendMail = require('./mailer');
@@ -7,6 +8,7 @@ const sendMail = require('./mailer');
 const app = express();
 app.use(bodyParser.json());
 app.use(morgan('combined'));
+app.use(cors());
 app.use(mw.checkHeaders);
 app.use(mw.checkSchema);
 

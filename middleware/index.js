@@ -15,10 +15,10 @@ function decrypt(text){
 
 const mws = {
   checkHeaders: function(req, res, next) {
-    if(!req.headers['x-is-ksecure']) return res.status(401).send("UNAUTHORIZED");
+    if(!req.headers['x-is-ksecure']) return res.status(401).send("UNAUTH: SECURITY");
 
     if(decrypt(req.headers['x-is-ksecure'].toString()).error) {
-      res.status(401).send("UNAUTHORIZED");
+      res.status(401).send("UNAUTH: NO MATCH");
     } else {
       next();
     }
@@ -27,12 +27,12 @@ const mws = {
     const schema = req.body;
     const keys = Object.keys(schema);
 
-    if(keys.length !== 4) {
-      res.status(401).send("UNAUTHORIZED")
+    if(keys.length !== 5) {
+      res.status(401).send("UNAUTH: ESCHEMA")
     } else {
-      keys.forEach(key => { 
-        if(typeof schema[key] !== 'string') {
-          res.status(401).send("UNAUTHORIZED") 
+      keys.forEach(key => {
+        if (schema[key] !== 'accepted' && typeof schema[key] !== 'string') {
+          res.status(401).send("UNAUTH: TYPE") 
         } else { 
           schema[key] = schema[key].toString();
         }
