@@ -5,10 +5,15 @@ const morgan = require('morgan');
 const mw = require('./middleware');
 const sendMail = require('./mailer');
 
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 const app = express();
 app.use(bodyParser.json());
 app.use(morgan('combined'));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(mw.checkHeaders);
 app.use(mw.checkSchema);
 
