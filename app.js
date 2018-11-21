@@ -26,5 +26,5 @@ app.post('/v1/mail', (req, res) => {
   });
 });
 
-let port = process.env.port || 1101;
+let port = process.env.PORT || 1101;
 app.listen(port, () => console.log('SERVER RUNNING'));
