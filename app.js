@@ -13,6 +13,7 @@ const corsOptions = {
 const app = express();
 app.use(bodyParser.json());
 app.use(morgan('combined'));
+app.options('*', cors());
 app.use(cors(corsOptions));
 app.use(mw.checkHeaders);
 app.use(mw.checkSchema);
