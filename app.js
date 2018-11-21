@@ -6,15 +6,14 @@ const mw = require('./middleware');
 const sendMail = require('./mailer');
 
 const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: ['https://kaizenmedia.co.za', 'http://localhost:3000'],
 }
 
 const app = express();
 app.use(bodyParser.json());
 app.use(morgan('combined'));
-app.options('*', cors());
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(mw.checkHeaders);
 app.use(mw.checkSchema);
 
