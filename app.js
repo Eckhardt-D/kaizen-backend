@@ -6,7 +6,7 @@ const mw = require('./middleware');
 const sendMail = require('./mailer');
 
 const corsOptions = {
-  origin: ['https://kaizenmedia.co.za', 'http://localhost:3000'],
+  origin: ['https://kaizenmedia.co.za'],
 }
 
 const app = express();
