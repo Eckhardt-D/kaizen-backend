@@ -3,7 +3,7 @@ const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet%2C+id&pub
 const videoController = require('./database');
 let videos = []
 
-setTimeout(() => {
+const ping = () => {
   fetch(URL)
   .then(res => res.json())
   .then(data => { 
@@ -12,8 +12,13 @@ setTimeout(() => {
     .catch(e => e)
   })
   .catch(err => console.log('err', '=>', err));
-}, (1000*60*60*24))
+}
 
+ping()
+
+setInterval(() => {
+  ping()
+}, (1000*60*60*24))
 
 module.exports = () => {
   return new Promise((resolve, reject) => {
