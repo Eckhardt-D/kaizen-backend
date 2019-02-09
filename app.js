@@ -1,23 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
+
 // const morgan = require('morgan');
 const mw = require('./middleware');
 const sendMail = require('./mailer');
+// const seedData = require('./seed.json');
+const getVideos = require('./services/videos');
 
 const corsOptions = {
-  origin: ['https://kaizenmedia.co.za'],
+  origin: [process.env.ORIGIN_PROD],
 }
 
 const app = express();
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.use(bodyParser.json());
-// app.use(morgan('combined'));
-app.use(mw.checkHeaders);
-app.use(mw.checkSchema);
 
-app.post('/v1/mail', (req, res) => {
+app.get('/v1/videos', (_, res) => {
+  getVideos().then(videos => res.json(videos))
+    .catch(e => res.json(e));
+});
+
+app.post('/v1/mail', [mw.checkHeaders, mw.checkSchema], (req, res) => {
   const details = req.body;
 
   sendMail(details, result => {

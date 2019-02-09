@@ -1,6 +1,6 @@
 const crypto = require('crypto'),
-      algorithm = 'aes-256-ctr',
-      password = 'monkeybloodbitch';
+      algorithm = process.env.CRYPTO_ALG,
+      password = process.env.CRYPTO_SALT;
 
 function decrypt(text){
   try {

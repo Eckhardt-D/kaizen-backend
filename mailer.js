@@ -11,19 +11,19 @@ function send(data, cb) {
 
   let mailOpts = {
     from: `"Client 👻" <${message.email}>`, // sender address
-    to: 'support@kaizenmedia.co.za', // list of receivers
+    to: process.env.MAIL_USER, // list of receivers
     subject: 'Website Enquiry ✔', // Subject line
     text: 
     `name: ${message.name}\nemail: ${message.email}\ntype: ${message.type}\nmessage: ${message.message}\n T's and C's: ${message.accepted}` // plain text body
   }
 
   const SMTP = {
-    host: 'smtp.kaizenmedia.co.za',
+    host: process.env.MAIL_HOST,
     port: 587,
     secure: false, // use TLS
     auth: {
-        user: 'support@kaizenmedia.co.za',
-        pass: '123Interesting'
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     },
     tls: {
       // do not fail on invalid certs
