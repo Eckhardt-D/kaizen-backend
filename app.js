@@ -10,7 +10,7 @@ const sendMail = require('./mailer');
 const getVideos = require('./services/videos');
 
 const corsOptions = {
-  origin: [process.env.ORIGIN_PROD],
+  origin: [process.env.ORIGIN_PROD, process.env.ORIGIN_PROD_TWO],
 }
 
 const app = express();
